@@ -1,5 +1,6 @@
 import sys,time 
-import pyautogui as pag
+#import pyautogui as pag
+import pydirectinput as pdi
 
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
@@ -16,7 +17,7 @@ class MyThread(QThread):
     def run(self):
         while True:
             self.timeTriger.emit()
-            time.sleep(120)
+            time.sleep(10)
 
 
 class MyMainWindow(QWidget, Ui_Form):
@@ -47,8 +48,10 @@ class MyMainWindow(QWidget, Ui_Form):
 
     def inputSignal(self):
         print("press 'm'") 
-        pag.press( 'm' )   
-
+        #pag.press( 'm' , interval=1) 
+        pdi.press( 'm' , interval=1)
+        pdi.press( 'w' )
+        
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     myWin = MyMainWindow()
